@@ -4,51 +4,41 @@ import ObservatoireCards from '../components/ObservatoireCards.jsx';
 ---
 
 <Layout title="Accueil">
-  <!-- Navbar -->
-  <nav class="bg-pays-basque-green shadow-md">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3 text-white">
-        <span class="text-2xl font-bold tracking-tight">Pays Basque</span>
-        <span class="text-pays-basque-green-light text-sm font-medium">Open Data</span>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        Pays Basque <span>Open Data</span>
       </a>
-      <ul class="hidden md:flex gap-8 text-white text-sm font-medium">
-        <li><a href="/" class="hover:text-pays-basque-green-light transition-colors">Accueil</a></li>
-        <li><a href="#observatoires" class="hover:text-pays-basque-green-light transition-colors">Observatoires</a></li>
-        <li><a href="https://koumoul.com" target="_blank" rel="noopener noreferrer" class="hover:text-pays-basque-green-light transition-colors">Catalogue</a></li>
+      <ul class="nav-links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="#observatoires">Observatoires</a></li>
+        <li><a href="https://koumoul.com" target="_blank" rel="noopener noreferrer">Catalogue</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="bg-gradient-to-br from-pays-basque-green to-pays-basque-dark text-white py-20 px-6">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-5xl font-bold mb-4 leading-tight">
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>
         Bienvenue sur le portail<br />
-        <span class="text-pays-basque-green-light">Open Data</span> du Pays Basque
+        <span>Open Data</span> du Pays Basque
       </h1>
-      <p class="text-lg text-white/80 max-w-2xl mx-auto">
-        Explorez les données ouvertes de notre territoire : environnement, mobilité, 
+      <p>
+        Explorez les données ouvertes de notre territoire : environnement, mobilité,
         économie et bien plus encore.
       </p>
     </div>
   </header>
 
-  <!-- Section observatoires — composant React -->
-  <main id="observatoires" class="max-w-6xl mx-auto px-6 py-16">
-    <div class="mb-10 text-center">
-      <h2 class="text-3xl font-bold text-pays-basque-dark mb-3">Nos Observatoires</h2>
-      <p class="text-gray-500 text-base max-w-xl mx-auto">
-        Chaque observatoire regroupe des visualisations interactives autour d'une thématique.
-      </p>
+  <main id="observatoires" class="section">
+    <div class="section-header">
+      <h2>Nos Observatoires</h2>
+      <p>Chaque observatoire regroupe des visualisations interactives autour d'une thématique.</p>
     </div>
-
     <ObservatoireCards client:load />
   </main>
 
-  <!-- Footer minimal -->
-  <footer class="bg-pays-basque-dark text-white py-8 mt-8">
-    <div class="max-w-6xl mx-auto px-6 text-center text-sm text-white/60">
-      © {new Date().getFullYear()} Pays Basque Open Data — Propulsé par Koumoul
-    </div>
+  <footer class="footer">
+    <p>© {new Date().getFullYear()} Pays Basque Open Data — Propulsé par Koumoul</p>
   </footer>
 </Layout>
