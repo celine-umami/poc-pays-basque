@@ -1,34 +1,14 @@
-const observatoires = [
-  {
-    slug: "arbres-remarquables",
-    titre: "Arbres Remarquables",
-    description:
-      "Explorez la diversité des arbres remarquables répertoriés sur le territoire : espèces, circonférences, répartition géographique.",
-    emoji: "🌳",
-    bannerClass: "card-banner--green",
-    disponible: true,
-  },
-  {
-    slug: "climat",
-    titre: "Climat & Météo",
-    description:
-      "Données de vigilance météorologique et indicateurs climatiques pour mieux anticiper les phénomènes naturels.",
-    emoji: "🌤️",
-    bannerClass: "card-banner--blue",
-    disponible: false,
-  },
-  {
-    slug: "biodiversite",
-    titre: "Biodiversité",
-    description:
-      "Suivi de la faune et de la flore locales, espèces protégées et zones naturelles d'intérêt écologique.",
-    emoji: "🦋",
-    bannerClass: "card-banner--purple",
-    disponible: false,
-  },
-];
+import { useState, useEffect } from 'react'
 
 export default function ObservatoireCards() {
+  const [observatoires, setObservatoires] = useState([])
+
+  useEffect(() => {
+    fetch('/observatoires/index.json')
+      .then((res) => res.json())
+      .then(setObservatoires)
+  }, [])
+
   return (
     <div className="cards-grid">
       {observatoires.map((obs) => {
@@ -47,7 +27,7 @@ export default function ObservatoireCards() {
         );
 
         return obs.disponible ? (
-          <a key={obs.slug} href={`/observatoires/${obs.slug}`} className="card-wrapper">
+          <a key={obs.slug} href={`/observatoires/${obs.slug}.html`} className="card-wrapper">
             {card}
           </a>
         ) : (
