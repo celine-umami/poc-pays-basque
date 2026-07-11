@@ -76,35 +76,10 @@ Mettre `"disponible": false` pour afficher la card avec le badge "Bientôt" sans
 | `<umami-aggregation>` | Affiche un KPI (somme, moyenne, compte…) |
 | `<umami-chart>` | Affiche un graphique (`bar`, `line`, `pie`) |
 | `<umami-filter>` | Ajoute un filtre interactif par champ |
-            └── arbres-remarquables.astro  # Page observatoire avec Lit WC
-```
-
-## Pages
-
-| URL | Description |
-|-----|-------------|
-| `/` | Socle commun : navbar, hero, grille des 3 observatoires |
-| `/observatoires/arbres-remarquables` | Dataviz Lit — arbres remarquables de Paris |
-
-## Commandes
-
-```bash
-# Développement local
-npm run dev
-
-# Build de production (dossier dist/)
-npm run build
-
-# Prévisualiser le build
-npm run preview
-```
 
 ## Stack technique
 
-- **Astro** — framework de pages statiques
-- **React** — composant `ObservatoireCards` (grille des cards)
-- **Lit.js** — Web Components `umami-*` (graphiques, agrégations, filtres)
-- **Tailwind CSS** — styles utilitaires
+- **React + Vite** — SPA pour le socle commun
+- **Web Components** — widgets `umami-*` (graphiques, agrégations, filtres)
+- **HTML statique** — pages observatoires maintenues par le client
 - **Hébergement cible** — Clever Cloud (application Static)
-
-# poc-paysBasque-full-react
