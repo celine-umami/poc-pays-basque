@@ -1,43 +1,8 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arbres Remarquables — Pays Basque Open Data</title>
-  <link rel="stylesheet" href="/style.css" />
-</head>
-<body>
+<script type="module" src="/components/umami-page.js"></script>
 
-  <!-- ============================================================
-       NAVIGATION
-       Vous pouvez modifier les textes entre les balises <a>.
-       Le lien "href" pointe vers l'URL de destination.
-       ============================================================ -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-brand">
-        Pays Basque <span>Open Data</span>
-      </a>
-      <a href="/" class="nav-back">← Tous les observatoires</a>
-    </div>
-  </nav>
-
-
-  <!-- ============================================================
-       EN-TÊTE DE L'OBSERVATOIRE
-       Modifiez le titre (h1) et la description (p).
-       ============================================================ -->
-  <header class="obs-header">
-    <div class="obs-header-inner">
-      <p class="label">Observatoire</p>
-      <h1>🌳 Arbres Remarquables</h1>
-      <p>
-        Espèces, circonférences et répartition géographique des arbres
-        remarquables répertoriés sur le territoire.
-      </p>
-    </div>
-  </header>
-
+<umami-page
+  title="🌳 Arbres Remarquables"
+  description="Espèces, circonférences et répartition géographique des arbres remarquables répertoriés sur le territoire.">
 
   <!-- ============================================================
        CONTENU DE LA PAGE
@@ -64,79 +29,58 @@
        Attributs utiles sur <umami-filter> :
          field        → champ sur lequel filtrer (crée un menu déroulant)
        ============================================================ -->
-  <main class="obs-content">
 
 
-    <!-- BLOC 1 : Indicateurs (chiffres clés) -->
-    <section class="obs-section">
-      <h2>Agrégations — Vigilance météo</h2>
+  <!-- BLOC 1 : Indicateurs (chiffres clés) -->
+  <section class="obs-section">
+    <h2>Agrégations — Vigilance météo</h2>
 
-      <div class="obs-kpis">
-        <umami-context
-          context="ctx,ctx1"
-          ctx-domain="public.opendatasoft.com"
-          ctx-dataset="weatherref-france-vigilance-meteo-departement"
-          ctx1-domain="public.opendatasoft.com"
-          ctx1-dataset="weatherref-france-vigilance-meteo-departement"
-        >
-          <umami-aggregation context="ctx"  field="phenomenon_id" operation="sum"></umami-aggregation>
-          <umami-aggregation context="ctx1" field="color_id"      operation="sum"></umami-aggregation>
-        </umami-context>
-      </div>
-    </section>
-
-
-    <!-- BLOC 2 : Graphique avec filtre -->
-    <section class="obs-section">
-      <h2>Circonférence par espèce — Arbres remarquables de Paris</h2>
-
-      <div class="obs-chart-wrapper">
-        <umami-context
-          context="ctx"
-          ctx-domain="documentation-resources.opendatasoft.com"
-          ctx-dataset="les-arbres-remarquables-de-paris"
-        >
-          <umami-filter context="ctx" field="arrondissement"></umami-filter>
-          <umami-chart  context="ctx" type="line" x="espece" y="circonference_en_cm"></umami-chart>
-        </umami-context>
-      </div>
-    </section>
+    <div class="obs-kpis">
+      <umami-context
+        context="ctx,ctx1"
+        ctx-domain="public.opendatasoft.com"
+        ctx-dataset="weatherref-france-vigilance-meteo-departement"
+        ctx1-domain="public.opendatasoft.com"
+        ctx1-dataset="weatherref-france-vigilance-meteo-departement"
+      >
+        <umami-aggregation context="ctx"  field="phenomenon_id" operation="sum"></umami-aggregation>
+        <umami-aggregation context="ctx1" field="color_id"      operation="sum"></umami-aggregation>
+      </umami-context>
+    </div>
+  </section>
 
 
-    <!-- BLOC EXEMPLE (commenté) : Copier et décommenter pour ajouter un bloc
-    <section class="obs-section">
-      <h2>Mon nouveau graphique</h2>
-      <div class="obs-chart-wrapper">
-        <umami-context
-          context="ctx"
-          ctx-domain="VOTRE-DOMAINE.koumoul.com"
-          ctx-dataset="IDENTIFIANT-DU-DATASET"
-        >
-          <umami-chart context="ctx" type="bar" x="CHAMP_X" y="CHAMP_Y" operation="count"></umami-chart>
-        </umami-context>
-      </div>
-    </section>
-    -->
+  <!-- BLOC 2 : Graphique avec filtre -->
+  <section class="obs-section">
+    <h2>Circonférence par espèce — Arbres remarquables de Paris</h2>
+
+    <div class="obs-chart-wrapper">
+      <umami-context
+        context="ctx"
+        ctx-domain="documentation-resources.opendatasoft.com"
+        ctx-dataset="les-arbres-remarquables-de-paris"
+      >
+        <umami-filter context="ctx" field="arrondissement"></umami-filter>
+        <umami-chart  context="ctx" type="line" x="espece" y="circonference_en_cm"></umami-chart>
+      </umami-context>
+    </div>
+  </section>
 
 
-  </main>
+  <!-- BLOC EXEMPLE (commenté) : Copier et décommenter pour ajouter un bloc
+  <section class="obs-section">
+    <h2>Mon nouveau graphique</h2>
+    <div class="obs-chart-wrapper">
+      <umami-context
+        context="ctx"
+        ctx-domain="VOTRE-DOMAINE.koumoul.com"
+        ctx-dataset="IDENTIFIANT-DU-DATASET"
+      >
+        <umami-chart context="ctx" type="bar" x="CHAMP_X" y="CHAMP_Y" operation="count"></umami-chart>
+      </umami-context>
+    </div>
+  </section>
+  -->
 
 
-  <!-- ============================================================
-       PIED DE PAGE
-       ============================================================ -->
-  <footer class="footer">
-    <p>© 2025 Pays Basque Open Data — Propulsé par Koumoul</p>
-  </footer>
-
-
-  <!-- ============================================================
-       COMPOSANTS GRAPHIQUES — Ne pas modifier ces lignes
-       ============================================================ -->
-  <script type="module" src="/components/umami-context.js"></script>
-  <script type="module" src="/components/umami-aggregation.js"></script>
-  <script type="module" src="/components/umami-filter.js"></script>
-  <script type="module" src="/components/umami-chart.js"></script>
-
-</body>
-</html>
+</umami-page>

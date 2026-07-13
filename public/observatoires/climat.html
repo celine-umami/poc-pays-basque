@@ -1,117 +1,60 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Climat & Météo — Pays Basque Open Data</title>
-  <link rel="stylesheet" href="/style.css" />
-</head>
-<body>
+<script type="module" src="/components/umami-page.js"></script>
 
-  <!-- ============================================================
-       NAVIGATION
-       ============================================================ -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-brand">
-        Pays Basque <span>Open Data</span>
-      </a>
-      <a href="/" class="nav-back">← Tous les observatoires</a>
+<umami-page
+  title="🌤️ Climat & Météo"
+  description="Données de vigilance météorologique et indicateurs climatiques pour mieux anticiper les phénomènes naturels sur le territoire.">
+
+
+  <!-- BLOC 1 : Indicateurs clés de vigilance météo -->
+  <section class="obs-section">
+    <h2>Indicateurs — Vigilance météorologique</h2>
+
+    <div class="obs-kpis">
+      <umami-context
+        context="ctx,ctx1"
+        ctx-domain="public.opendatasoft.com"
+        ctx-dataset="weatherref-france-vigilance-meteo-departement"
+        ctx1-domain="public.opendatasoft.com"
+        ctx1-dataset="weatherref-france-vigilance-meteo-departement"
+      >
+        <umami-aggregation context="ctx"  field="phenomenon_id" operation="count"></umami-aggregation>
+        <umami-aggregation context="ctx1" field="color_id"      operation="avg"></umami-aggregation>
+      </umami-context>
     </div>
-  </nav>
+  </section>
 
 
-  <!-- ============================================================
-       EN-TÊTE DE L'OBSERVATOIRE
-       ============================================================ -->
-  <header class="obs-header">
-    <div class="obs-header-inner">
-      <p class="label">Observatoire</p>
-      <h1>🌤️ Climat & Météo</h1>
-      <p>
-        Données de vigilance météorologique et indicateurs climatiques
-        pour mieux anticiper les phénomènes naturels sur le territoire.
-      </p>
+  <!-- BLOC 2 : Répartition des phénomènes par couleur d'alerte -->
+  <section class="obs-section">
+    <h2>Répartition des alertes par phénomène</h2>
+
+    <div class="obs-chart-wrapper">
+      <umami-context
+        context="ctx"
+        ctx-domain="public.opendatasoft.com"
+        ctx-dataset="weatherref-france-vigilance-meteo-departement"
+      >
+        <umami-filter context="ctx" field="phenomenon_max_color_id"></umami-filter>
+        <umami-chart  context="ctx" type="bar" x="phenomenon_id" y="color_id" operation="count"></umami-chart>
+      </umami-context>
     </div>
-  </header>
+  </section>
 
 
-  <!-- ============================================================
-       CONTENU DE LA PAGE
-       ============================================================ -->
-  <main class="obs-content">
+  <!-- BLOC 3 : Évolution temporelle des vigilances -->
+  <section class="obs-section">
+    <h2>Évolution des vigilances dans le temps</h2>
+
+    <div class="obs-chart-wrapper">
+      <umami-context
+        context="ctx"
+        ctx-domain="public.opendatasoft.com"
+        ctx-dataset="weatherref-france-vigilance-meteo-departement"
+      >
+        <umami-chart context="ctx" type="line" x="validity_period_time_start" y="phenomenon_id" operation="count"></umami-chart>
+      </umami-context>
+    </div>
+  </section>
 
 
-    <!-- BLOC 1 : Indicateurs clés de vigilance météo -->
-    <section class="obs-section">
-      <h2>Indicateurs — Vigilance météorologique</h2>
-
-      <div class="obs-kpis">
-        <umami-context
-          context="ctx,ctx1"
-          ctx-domain="public.opendatasoft.com"
-          ctx-dataset="weatherref-france-vigilance-meteo-departement"
-          ctx1-domain="public.opendatasoft.com"
-          ctx1-dataset="weatherref-france-vigilance-meteo-departement"
-        >
-          <umami-aggregation context="ctx"  field="phenomenon_id" operation="count"></umami-aggregation>
-          <umami-aggregation context="ctx1" field="color_id"      operation="avg"></umami-aggregation>
-        </umami-context>
-      </div>
-    </section>
-
-
-    <!-- BLOC 2 : Répartition des phénomènes par couleur d'alerte -->
-    <section class="obs-section">
-      <h2>Répartition des alertes par phénomène</h2>
-
-      <div class="obs-chart-wrapper">
-        <umami-context
-          context="ctx"
-          ctx-domain="public.opendatasoft.com"
-          ctx-dataset="weatherref-france-vigilance-meteo-departement"
-        >
-          <umami-filter context="ctx" field="phenomenon_max_color_id"></umami-filter>
-          <umami-chart  context="ctx" type="bar" x="phenomenon_id" y="color_id" operation="count"></umami-chart>
-        </umami-context>
-      </div>
-    </section>
-
-
-    <!-- BLOC 3 : Évolution temporelle des vigilances -->
-    <section class="obs-section">
-      <h2>Évolution des vigilances dans le temps</h2>
-
-      <div class="obs-chart-wrapper">
-        <umami-context
-          context="ctx"
-          ctx-domain="public.opendatasoft.com"
-          ctx-dataset="weatherref-france-vigilance-meteo-departement"
-        >
-          <umami-chart context="ctx" type="line" x="validity_period_time_start" y="phenomenon_id" operation="count"></umami-chart>
-        </umami-context>
-      </div>
-    </section>
-
-
-  </main>
-
-
-  <!-- ============================================================
-       PIED DE PAGE
-       ============================================================ -->
-  <footer class="footer">
-    <p>© 2025 Pays Basque Open Data — Propulsé par Koumoul</p>
-  </footer>
-
-
-  <!-- ============================================================
-       COMPOSANTS GRAPHIQUES — Ne pas modifier ces lignes
-       ============================================================ -->
-  <script type="module" src="/components/umami-context.js"></script>
-  <script type="module" src="/components/umami-aggregation.js"></script>
-  <script type="module" src="/components/umami-filter.js"></script>
-  <script type="module" src="/components/umami-chart.js"></script>
-
-</body>
-</html>
+</umami-page>
