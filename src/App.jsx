@@ -1,24 +1,11 @@
 import ObservatoireCards from './components/ObservatoireCards.jsx'
+import { HOME_NAV_HTML, FOOTER_HTML } from '../shared/layout.js'
 
 export default function App() {
   return (
     <>
-      <nav className="nav">
-        <div className="nav-inner">
-          <a href="/" className="nav-brand">
-            Pays Basque <span>Open Data</span>
-          </a>
-          <ul className="nav-links">
-            <li><a href="/">Accueil</a></li>
-            <li><a href="#observatoires">Observatoires</a></li>
-            <li>
-              <a href="https://koumoul.com" target="_blank" rel="noopener noreferrer">
-                Catalogue
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      {/* Nav et footer injectés depuis la source unique : public/shared/layout.js */}
+      <div dangerouslySetInnerHTML={{ __html: HOME_NAV_HTML }} style={{ display: 'contents' }} />
 
       <header className="hero">
         <div className="hero-inner">
@@ -41,9 +28,7 @@ export default function App() {
         <ObservatoireCards />
       </main>
 
-      <footer className="footer">
-        <p>© {new Date().getFullYear()} Pays Basque Open Data — Propulsé par Koumoul</p>
-      </footer>
+      <div dangerouslySetInnerHTML={{ __html: FOOTER_HTML }} style={{ display: 'contents' }} />
     </>
   )
 }
